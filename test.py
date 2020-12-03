@@ -17,7 +17,7 @@ for file in list:
         image_path = './test/' + file
         img = Image.open(image_path)
         img = img.resize((64, 64)) #Change the size of the picture to meet the requirements of feeding the network
-        img = np.array(img).reshape(-1, 64, 64, 1).astype('float32') / 255 #Converted to numpy type data, normalized processing
+        img = np.array(img).reshape(-1, 64, 64, 1)  #Converted to numpy type data, normalized processing
 
         prediction = model.predict(img)
         final_prediction = [result.argmax() for result in prediction][0]
@@ -25,9 +25,10 @@ for file in list:
 
         print(p)
         print(['circle', 'no'][final_prediction])
-        print('--------------')
+        
 
         image = cv2.imread(image_path)
         image = imutils.resize(image, width=450)
         cv2.imshow('', image)
         cv2.waitKey(0)
+         

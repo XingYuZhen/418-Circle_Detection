@@ -1,7 +1,7 @@
 
 import tensorflow as tf
 
-model_location = "./model/model.h5"  #The location and the name of the saved model
+model_location = "./model/model.h5"  #  The location and the name of the saved model
 train_location = "./data/train/"
 test_location = "./data/validation/"
 
@@ -17,7 +17,7 @@ channels = 1  #Number of channels for training images
 def get_datasets():
     
     train_data = tf.keras.preprocessing.image.ImageDataGenerator(  #Picture generator
-        rescale= 1.0/255.0  #Normalization
+        rescale= 1.0  #Normalization
     )
     train_generator = train_data.flow_from_directory(train_location,target_size=(image_height, image_width),color_mode="grayscale",batch_size=BATCH_SIZE,shuffle=True,class_mode="categorical")
 
@@ -25,7 +25,7 @@ def get_datasets():
 #The fourth parameter is the number of data fed to the neural network at a time, the fifth parameter is the random seed, the sixth parameter is whether to disrupt the order, and the seventh parameter is the method of ImageDataGenerator
 
     test_data = tf.keras.preprocessing.image.ImageDataGenerator(
-        rescale=1.0/255.0
+        rescale=1.0
     )
     test_generator = test_data.flow_from_directory(test_location, target_size=(image_height, image_width),color_mode="grayscale", batch_size=BATCH_SIZE, shuffle=False,class_mode="categorical" )
 
